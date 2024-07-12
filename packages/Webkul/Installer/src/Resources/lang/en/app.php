@@ -74,8 +74,10 @@ return [
             'role' => [
                 'administrator-role' => 'Administrator Role',
                 'administrator'      => 'Administrator',
-                'custom-role' => 'Sales Man',
-                'custom' => 'Sales'
+                'sales-role' => 'Sales Man',
+                'sales' => 'Sales',
+                'customer-role' => 'Customer Role',
+                'customer' => 'Customer',
             ],
         ],
 

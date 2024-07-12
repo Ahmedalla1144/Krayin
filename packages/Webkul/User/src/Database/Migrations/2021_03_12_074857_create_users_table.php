@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Webkul\User\Models\Role;
 
 class CreateUsersTable extends Migration
 {
@@ -14,13 +15,13 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password')->nullable();
             $table->boolean('status')->default(0);
-            $table->integer('role_id')->unsigned();
-            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
+            $table->foreignIdFor(Role::class)->default(3)->constrained()->onDelete('cascade');
+            $table->string('image')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

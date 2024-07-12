@@ -29,11 +29,20 @@ class RoleSeeder extends Seeder
         ]);
         DB::table('roles')->insert([
             'id'              => 2,
-            'name'            => trans('installer::app.seeders.user.role.custom', [], $defaultLocale),
-            'description'     => trans('installer::app.seeders.user.role.custom-role', [], $defaultLocale),
+            'name'            => trans('installer::app.seeders.user.role.sales', [], $defaultLocale),
+            'description'     => trans('installer::app.seeders.user.role.sales-role', [], $defaultLocale),
             'permission_type' => 'custom',
             'permissions' => json_encode(
                 ["dashboard", "leads", "leads.view", "quotes", "quotes.edit"]
+            )
+        ]);
+        DB::table('roles')->insert([
+            'id'              => 3,
+            'name'            => trans('installer::app.seeders.user.role.customer', [], $defaultLocale),
+            'description'     => trans('installer::app.seeders.user.role.customer-role', [], $defaultLocale),
+            'permission_type' => 'custom',
+            'permissions' => json_encode(
+                ["dashboard"]
             )
         ]);
     }

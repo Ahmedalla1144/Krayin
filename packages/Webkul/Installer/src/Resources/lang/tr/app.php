@@ -74,6 +74,10 @@ return [
             'role' => [
                 'administrator-role' => 'Yönetici Rolü',
                 'administrator'      => 'Yönetici',
+                'sales-role' => 'satış Rolü',
+                'sales' => 'SATICI',
+                'customer-role' => 'Müşteri Rolü',
+                'customer' => 'Müşteri',
             ],
         ],
 

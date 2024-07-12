@@ -16,7 +16,7 @@ class Bouncer
      */
     public function handle($request, \Closure $next, $guard = 'user')
     {
-        if (! auth()->guard($guard)->check()) {
+        if (!auth()->guard($guard)->check()) {
             return redirect()->route('admin.session.create');
         }
 
@@ -24,7 +24,7 @@ class Bouncer
          * If user status is changed by admin. Then session should be
          * logged out.
          */
-        if (! (bool) auth()->guard($guard)->user()->status) {
+        if (!(bool) auth()->guard($guard)->user()->status) {
             auth()->guard($guard)->logout();
 
             session()->flash('error', __('admin::app.errors.401'));
@@ -40,7 +40,7 @@ class Bouncer
             auth()->guard($guard)->logout();
 
             session()->flash('error', __('admin::app.errors.401'));
-            
+
             return redirect()->route('admin.session.create');
         }
 
@@ -54,7 +54,7 @@ class Bouncer
      */
     public function isPermissionsEmpty()
     {
-        if (! $role = auth()->guard('user')->user()->role) {
+        if (!$role = auth()->guard('user')->user()->role) {
             abort(401, 'This action is unauthorized.');
         }
 

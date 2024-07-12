@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Webkul\Admin\Http\Controllers\Controller;
+use Webkul\Admin\Http\Controllers\Customer\CustomerController;
+use Webkul\Admin\Http\Controllers\Sales\SalesController;
 use Webkul\Admin\Http\Controllers\User\SessionController;
 
 Route::group(['middleware' => ['web', 'admin_locale']], function () {
@@ -21,7 +23,7 @@ Route::group(['middleware' => ['web', 'admin_locale']], function () {
         Route::get('register', [SessionController::class, 'register'])->name('admin.session.register');
 
         //Register post route to admin auth controller
-        Route::post('register', [SessionController::class,'registerStore'])->name('admin.session.register_store');
+        Route::post('register', [SessionController::class, 'registerStore'])->name('admin.session.register_store');
 
         // Forget Password Routes
         Route::get('forgot-password', 'Webkul\Admin\Http\Controllers\User\ForgotPasswordController@create')->name('admin.forgot_password.create');
@@ -429,4 +431,12 @@ Route::group(['middleware' => ['web', 'admin_locale']], function () {
             });
         });
     });
+    //Sales Routes
+    Route::group(['prefix' => 'sales', 'middleware' => 'user'], function () {
+        Route::get('dashboard', [SalesController::class, 'index'])->name('admin.sales.index');
+    })->name('sales');
+    //Customer Routes
+    Route::group(['prefix' => 'customer', 'middleware' => 'user'], function () {
+        Route::get('dashboard', [CustomerController::class, 'index'])->name('admin.sales.index');
+    })->name('customer');
 });

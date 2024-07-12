@@ -74,8 +74,10 @@ return [
             'role' => [
                 'administrator-role' => 'دور المسؤول',
                 'administrator'      => 'المسؤول',
-                'custom-role' => 'رجل المبيعات',
-                'custom' => 'البائع'
+                'sales-role' => 'رجل المبيعات',
+                'sales' => 'البائع',
+                'customer-role' => 'دور العميل',
+                'customer' => 'العميل',
             ],
         ],
 

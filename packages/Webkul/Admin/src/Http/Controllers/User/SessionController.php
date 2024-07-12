@@ -3,6 +3,7 @@
 namespace Webkul\Admin\Http\Controllers\User;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\User\Models\Role;
@@ -57,8 +58,17 @@ class SessionController extends Controller
             return redirect()->route('admin.session.create');
         }
 
+
         session()->flash('success', trans('admin::app.settings.users.login-success'));
-        return redirect()->intended(route('admin.dashboard.index'));
+        $user_role = auth()->user()->role_id;
+
+        if ($user_role === 1) {
+            return redirect()->intended(route('admin.dashboard.index'));
+        } elseif ($user_role === 2) {
+            return redirect()->intended(view('admin::dashboard.sales'));
+        } elseif ($user_role === 3) {
+            return redirect()->intended(view('admin::dashboard.customers'));
+        }
     }
 
     /**

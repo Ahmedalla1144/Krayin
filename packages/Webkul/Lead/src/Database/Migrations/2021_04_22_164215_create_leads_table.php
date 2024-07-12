@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -21,9 +22,8 @@ class CreateLeadsTable extends Migration
             $table->boolean('status')->nullable();
             $table->text('lost_reason')->nullable();
             $table->datetime('closed_at')->nullable();
+            $table->foreignIdFor(User::class)->nullable()->constrained()->onDelete('cascade');
 
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->integer('person_id')->unsigned();
             $table->foreign('person_id')->references('id')->on('persons')->onDelete('cascade');
@@ -39,7 +39,7 @@ class CreateLeadsTable extends Migration
 
             $table->integer('lead_stage_id')->unsigned();
             $table->foreign('lead_stage_id')->references('id')->on('lead_stages')->onDelete('cascade');
-            
+
             $table->timestamps();
         });
     }
